@@ -39,11 +39,29 @@
         #active-alerts i {
             font-size: 1.5rem;
         }
+
+        .dashboard-header {
+            display: flex; /* Permette di allineare logo e titolo sulla stessa riga */
+            align-items: center; /* Allinea verticalmente al centro */
+            margin-bottom: 30px; /* Spazio sotto l'header */
+            padding-bottom: 15px;
+            border-bottom: 1px solid #dee2e6; /* Linea divisoria */
+        }
+        .dashboard-header .logo {
+            height: 50px; /* Altezza del logo, adatta a piacimento */
+            margin-right: 20px; /* Spazio tra logo e titolo */
+        }
+        .dashboard-header h1 {
+            margin-bottom: 0; /* Rimuovi il margine inferiore predefinito dell'H1 */
+        }
     </style>
 </head>
 <body>
     <div class="container-fluid">
-        <h1 class="text-center mb-4 text-primary">Dashboard Controllo Valvola - Demo</h1>
+        <header class="dashboard-header">
+            <img src="images/buti_logo.png" alt="Buti" class="logo">
+            <h1 class="text-center text-primary flex-grow-1">Dashboard Controllo Valvola - Demo</h1>
+        </header>
 
         <section id="valve-gad" class="dashboard-section">
             <h2>Disegno Valvola GAD</h2>
