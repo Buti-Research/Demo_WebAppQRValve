@@ -17,7 +17,7 @@ window.pressureChartInstance = new Chart(ctxPressure, {
         labels: Array(10).fill(''),
         datasets: [{
             label: 'Pressione Reale (bar)',
-            data: Array(10).fill(10), // Dati iniziali
+            data: Array(10).fill(10),
             borderColor: 'rgb(75, 192, 192)',
             tension: 0.1,
             fill: false
@@ -27,7 +27,7 @@ window.pressureChartInstance = new Chart(ctxPressure, {
         animation: false,
         scales: {
             y: { beginAtZero: false, suggestedMin: 9, suggestedMax: 11 },
-            x: { display: false } // Nascondi etichette asse X per un grafico continuo
+            x: { display: false }
         },
         plugins: {
             legend: { display: true }
@@ -69,7 +69,7 @@ function updateParameters() {
         { name: "Velocità Flusso", theoretical: "100 L/min", real: getRandomValue(98, 102) + " L/min" }
     ];
     const tbody = document.getElementById('parameters-body');
-    tbody.innerHTML = ''; // Pulisci la tabella
+    tbody.innerHTML = ''; // clear table
     params.forEach(p => {
         const row = tbody.insertRow();
         row.insertCell().textContent = p.name;
@@ -78,10 +78,10 @@ function updateParameters() {
         row.insertCell().textContent = p.name.includes("Pressione") ? "bar" : (p.name.includes("Temperatura") ? "°C" : (p.name.includes("Valvola") ? "%" : "L/min"));
     });
 
-    // Aggiorna grafici
+    // random update chart
     if (window.pressureChartInstance) {
         window.pressureChartInstance.data.datasets[0].data.push(parseFloat(params[0].real));
-        window.pressureChartInstance.data.datasets[0].data.shift(); // Rimuovi il primo per mantenere la finestra
+        window.pressureChartInstance.data.datasets[0].data.shift(); // remove first to have windows ????
         window.pressureChartInstance.update();
     }
     if (window.temperatureChartInstance) {
@@ -90,8 +90,8 @@ function updateParameters() {
         window.temperatureChartInstance.update();
     }
 }
-setInterval(updateParameters, 2000); // Aggiorna ogni 2 secondi
-updateParameters(); // Primo aggiornamento
+setInterval(updateParameters, 5000); // update every 5 sec
+updateParameters();
 
 // --- Elenco Status Operativi di Lavoro ---
 function updateOperationalStatus() {
@@ -103,14 +103,14 @@ function updateOperationalStatus() {
     const valveStatusEl = document.getElementById('valve-status');
     const actuatorStatusEl = document.getElementById('actuator-status');
     const modeStatusEl = document.getElementById('mode-status');
-    const connectionStatusEl = document.getElementById('connection-status'); // Se aggiungi questo
+    const connectionStatusEl = document.getElementById('connection-status');
 
     valveStatusEl.textContent = valveStates[getRandomInt(0, valveStates.length - 1)];
     actuatorStatusEl.textContent = actuatorStates[getRandomInt(0, actuatorStates.length - 1)];
     modeStatusEl.textContent = modeStates[getRandomInt(0, modeStates.length - 1)];
     // connectionStatusEl.textContent = connectionStates[getRandomInt(0, connectionStates.length - 1)];
 
-    // Cambia colore card in base allo stato (esempio per attuatore)
+    // change the color based on random state
     const actuatorCard = actuatorStatusEl.closest('.card');
     actuatorCard.classList.remove('bg-success', 'bg-warning', 'bg-danger', 'bg-info');
     if (actuatorStatusEl.textContent === "Operativo") {
@@ -120,15 +120,15 @@ function updateOperationalStatus() {
     } else if (actuatorStatusEl.textContent === "Errore") {
         actuatorCard.classList.add('bg-danger');
     } else {
-        actuatorCard.classList.add('bg-info'); // Default o altro stato
+        actuatorCard.classList.add('bg-info'); 
     }
 }
-setInterval(updateOperationalStatus, 3000); // Aggiorna ogni 3 secondi
-updateOperationalStatus(); // Primo aggiornamento
+setInterval(updateOperationalStatus, 10000); // update every 10 sec
+updateOperationalStatus(); 
 
 // --- Alert Attivi e Log ---
 let alertCounter = 0;
-const alertLog = []; // Array per conservare il log
+const alertLog = []; 
 function addSimulatedAlert() {
     alertCounter++;
     const now = new Date().toLocaleString('it-IT');
@@ -152,13 +152,13 @@ function addSimulatedAlert() {
         message: randomMsg,
         state: randomState
     };
-    alertLog.unshift(newAlert); // Aggiungi in cima
-    if (alertLog.length > 10) { // Mantieni solo gli ultimi 10 alert nel log visualizzato
+    alertLog.unshift(newAlert); 
+    if (alertLog.length > 10) { 
         alertLog.pop();
     }
 
     const tbody = document.getElementById('alert-log-body');
-    tbody.innerHTML = ''; // Pulisci la tabella
+    tbody.innerHTML = ''; // clear the table
     alertLog.forEach(alertItem => {
         const row = tbody.insertRow();
         row.insertCell().textContent = alertItem.timestamp;
@@ -176,8 +176,8 @@ function addSimulatedAlert() {
         activeAlertDiv.classList.add('d-none');
     }
 }
-setInterval(addSimulatedAlert, 5000); // Aggiungi alert ogni 5 secondi
-addSimulatedAlert(); // Primo aggiornamento
+setInterval(addSimulatedAlert, 15000); // every 5 sec
+addSimulatedAlert(); // first update
 
 // --- Sensor Data Download ---
 document.getElementById('download-sensor-data-btn').addEventListener('click', function() {
@@ -186,7 +186,7 @@ document.getElementById('download-sensor-data-btn').addEventListener('click', fu
     ];
 
     const startDate = new Date('2024-01-01T00:00:00');
-    for (let i = 0; i < 200; i++) { // Genera 200 punti dati
+    for (let i = 0; i < 200; i++) { // 200 data point
         const currentTimestamp = new Date(startDate.getTime() + i * 3600 * 1000); // Ogni ora
         data.push([
             currentTimestamp.toISOString(),
@@ -222,8 +222,6 @@ document.getElementById('alert-form').addEventListener('submit', function(event)
         return;
     }
 
-    // Qui in una vera app invieresti l'alert a un backend.
-    // Per la demo, simuliamo solo la conferma e l'aggiunta al log.
     console.log("Simulazione invio alert:", message);
 
     const now = new Date().toLocaleString('it-IT');
@@ -233,12 +231,12 @@ document.getElementById('alert-form').addEventListener('submit', function(event)
         message: message,
         state: "Inviato"
     };
-    alertLog.unshift(newManualAlert); // Aggiungi alert manuale in cima al log
+    alertLog.unshift(newManualAlert); // manual alert
     if (alertLog.length > 10) {
         alertLog.pop();
     }
     const tbody = document.getElementById('alert-log-body');
-    tbody.innerHTML = ''; // Ricarica la tabella con il nuovo alert
+    tbody.innerHTML = ''; // refresh the table
     alertLog.forEach(alertItem => {
         const row = tbody.insertRow();
         row.insertCell().textContent = alertItem.timestamp;
@@ -249,8 +247,8 @@ document.getElementById('alert-form').addEventListener('submit', function(event)
 
 
     document.getElementById('alert-confirmation').classList.remove('d-none');
-    document.getElementById('alertMessage').value = ''; // Pulisci il campo
+    document.getElementById('alertMessage').value = ''; // clear field
     setTimeout(() => {
         document.getElementById('alert-confirmation').classList.add('d-none');
-    }, 3000); // Nascondi conferma dopo 3 secondi
+    }, 3000); // hide after 3 sec
 });
