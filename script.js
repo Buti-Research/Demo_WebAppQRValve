@@ -18,7 +18,7 @@ window.pressureChartInstance = new Chart(ctxPressure, {
         datasets: [{
             label: 'Pressione Reale (bar)',
             data: Array(10).fill(10),
-            borderColor: 'rgb(75, 192, 192)',
+            borderColor: 'rgb(12, 91, 211)',
             tension: 0.1,
             fill: false
         }]
@@ -43,7 +43,7 @@ window.temperatureChartInstance = new Chart(ctxTemperature, {
         datasets: [{
             label: 'Temperatura Reale (°C)',
             data: Array(10).fill(25),
-            borderColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(253, 45, 45)',
             tension: 0.1,
             fill: false
         }]
@@ -90,7 +90,7 @@ function updateParameters() {
         window.temperatureChartInstance.update();
     }
 }
-setInterval(updateParameters, 5000); // update every 5 sec
+setInterval(updateParameters, 1000); // update every 1 sec
 updateParameters();
 
 // --- Elenco Status Operativi di Lavoro ---
