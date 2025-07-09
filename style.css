@@ -1,8 +1,149 @@
 /* style.css */
 
-/* Esempio: margine superiore per tutte le sezioni */
-.dashboard-section {
-    margin-top: 20px;
+/* --- Stili Generali --- */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
 }
 
-/* Puoi aggiungere altri stili qui per personalizzare il look */
+/* --- Header e Logo --- */
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #dee2e6;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.dashboard-header .logo {
+    height: 60px; /* Altezza del logo, adatta a piacimento */
+    margin-right: 25px; /* Spazio tra logo e titolo */
+}
+
+.dashboard-header h1 {
+    margin-bottom: 0;
+    flex-grow: 1;
+    text-align: center;
+    color: #007bff;
+    font-weight: 600;
+}
+
+/* --- Sezioni della Dashboard --- */
+.dashboard-section {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    padding: 25px;
+    margin-bottom: 25px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.dashboard-section:hover {
+    transform: translateY(-3px);
+}
+
+.dashboard-section h2 {
+    color: #0056b3;
+    border-bottom: 2px solid #aecde0;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* --- Accordion (per Datasheet e Documenti) --- */
+.accordion-button {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #007bff;
+    background-color: #e9f5ff;
+    border-radius: 8px !important;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #0056b3;
+    background-color: #d0e7ff;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+}
+
+.accordion-body {
+    padding: 20px;
+    background-color: #fdfdff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* Stile specifico per l'immagine del datasheet */
+.valve-datasheet-img {
+    max-height: 800px;
+    display: block;
+    margin: auto;
+}
+
+/* --- Tabelle (Parametri, Log, etc.) --- */
+.table {
+    margin-top: 15px;
+    font-size: 0.95rem;
+}
+
+.table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: 500;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+/* --- Card di Stato (Operative Status) --- */
+.card {
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.card-title {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+/* Override colori Bootstrap per status (opzionale, se vuoi tonalità diverse) */
+.card.bg-success { background-color: #28a745 !important; }
+.card.bg-warning { background-color: #ffc107 !important; }
+.card.bg-danger { background-color: #dc3545 !important; }
+.card.bg-info { background-color: #17a2b8 !important; }
+
+/* --- Form di Invio Alert --- */
+#alert-form .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+#alert-form .btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* --- Altri elementi specifici --- */
+#active-alerts {
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+#active-alerts i {
+    font-size: 1.8rem;
+    vertical-align: middle;
+}
