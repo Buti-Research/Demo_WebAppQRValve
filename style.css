@@ -1,108 +1,110 @@
 /* style.css */
 
 /* Importa il font Roboto da Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
 /* --- Stili Generali --- */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f8fbfd; /* Sfondo molto chiaro, quasi bianco-bluastro */
-    color: #3f526b; /* Testo principale grigio-blu scuro */
+    background-color: #f0f2f5; /* Grigio chiaro molto neutro */
+    color: #333d47; /* Grigio scuro per il testo principale, leggibile */
+    line-height: 1.6; /* Migliora la leggibilità del testo */
 }
 
 /* --- Header e Logo --- */
 .dashboard-header {
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #e0e7f0; /* Linea divisoria leggera */
-    background-color: #ffffff; /* Sfondo bianco puro per l'header */
-    padding: 15px 25px; /* Aumentato il padding */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Ombra leggera ma presente */
-    border-radius: 15px; /* Bordi più stondati */
-    margin-top: 15px; /* Spazio in alto per il contenitore */
+    margin-bottom: 40px; /* Più spazio sotto l'header */
+    padding: 20px 30px; /* Padding generoso */
+    background-color: #ffffff; /* Sfondo bianco puro */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* Ombra definita ma non pesante */
+    border-radius: 8px; /* Bordi leggermente stondati, più pragmatici */
+    margin-top: 20px;
+    border: 1px solid #e5e9ed; /* Bordo sottile */
 }
 
 .dashboard-header .logo {
-    height: 65px; /* Logo leggermente più grande */
-    margin-right: 30px; /* Spazio aumentato tra logo e titolo */
+    height: 70px; /* Logo più grande per maggiore impatto */
+    margin-right: 35px; /* Spazio aumentato */
 }
 
 .dashboard-header h1 {
     margin-bottom: 0;
     flex-grow: 1;
     text-align: center;
-    color: #7abeff; /* Blu pastello chiaro per il titolo */
-    font-weight: 700;
-    letter-spacing: 1px; /* Spaziatura ridotta rispetto al tema tech */
-    text-shadow: none; /* Rimosso l'effetto luminoso */
+    color: #007bff; /* Blu primario Bootstrap, forte e diretto */
+    font-weight: 700; /* Molto grassetto */
+    letter-spacing: 0.8px; /* Spaziatura leggera per leggibilità */
+    text-transform: uppercase; /* Testo in maiuscolo per un look più "command center" */
+    font-size: 2.5rem; /* Titolo più grande */
 }
 
 /* --- Sezioni della Dashboard --- */
 .dashboard-section {
-    background-color: #ffffff; /* Sfondo bianco per le sezioni */
-    border-radius: 15px; /* Bordi molto stondati */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* Ombra più morbida */
-    padding: 30px; /* Più padding */
-    margin-bottom: 30px; /* Più margine in basso */
+    background-color: #ffffff; /* Sfondo bianco per tutte le sezioni */
+    border-radius: 8px; /* Bordi leggermente stondati, coerenza con l'header */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Ombra chiara e definita */
+    padding: 30px;
+    margin-bottom: 30px;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    border: 1px solid #e0e7f0; /* Bordo sottile per definizione */
+    border: 1px solid #e5e9ed; /* Bordo sottile per delineare */
 }
 
 .dashboard-section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12); /* Ombra più evidente all'hover */
+    transform: translateY(-4px); /* Effetto alza leggermente più evidente */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Ombra più intensa all'hover */
 }
 
 .dashboard-section h2 {
-    color: #6a95e0; /* Blu pastello medio per i sottotitoli delle sezioni */
-    border-bottom: 2px solid #a8d5ff; /* Linea pastello sotto i titoli */
-    padding-bottom: 15px; /* Più padding sotto la linea */
+    color: #0056b3; /* Blu scuro per i sottotitoli */
+    border-bottom: 2px solid #ced4da; /* Linea grigia sottile e chiara */
+    padding-bottom: 15px;
     margin-bottom: 25px;
-    font-size: 2rem;
+    font-size: 2.2rem; /* Sottotitoli più grandi e leggibili */
     font-weight: 600;
-    text-shadow: none;
+    text-transform: uppercase; /* Maiuscolo anche qui per uniformità */
 }
 
 /* --- Accordion (per Datasheet e Documenti) --- */
 .accordion-item {
-    border: 1px solid #cfe2ff; /* Bordo leggero per gli item dell'accordion */
+    border: 1px solid #e5e9ed; /* Bordo sottile */
     margin-bottom: 10px;
-    border-radius: 12px; /* Bordi più stondati per ogni item */
+    border-radius: 8px; /* Bordi stondati */
     overflow: hidden;
 }
 
 .accordion-button {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 500;
-    color: #5579b8; /* Blu pastello scuro per il testo del bottone */
-    background-color: #e6f0ff; /* Sfondo molto chiaro per il bottone */
-    border-radius: 12px !important;
+    color: #333d47; /* Testo scuro per il bottone */
+    background-color: #f7f9fb; /* Sfondo molto chiaro */
+    border-radius: 8px !important;
     border: none !important;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
+    padding: 18px 25px; /* Padding generoso per un'area cliccabile ampia */
 }
 
 .accordion-button:hover {
-    background-color: #dbeaff; /* Sfondo leggermente più scuro all'hover */
+    background-color: #e9ecef; /* Sfondo grigio leggero all'hover */
 }
 
 .accordion-button:not(.collapsed) {
-    color: #4a6fa8; /* Colore più scuro quando aperto */
-    background-color: #ccdefd; /* Sfondo pastello quando aperto */
-    box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
-    border-bottom: 1px solid #a8d5ff !important;
+    color: #0056b3; /* Blu scuro quando aperto */
+    background-color: #e9f5ff; /* Sfondo azzurro chiaro quando aperto */
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.1);
+    border-bottom: 1px solid #cce0ff !important; /* Linea di accento blu */
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
 }
 
 .accordion-body {
     padding: 20px;
-    background-color: #f7fbff; /* Sfondo molto chiaro per il contenuto */
-    border-top: 1px solid #e0e7f0;
-    color: #3f526b;
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
+    background-color: #ffffff; /* Contenuto bianco */
+    border-top: 1px solid #e5e9ed;
+    color: #333d47;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 /* Stile specifico per l'immagine del datasheet */
@@ -110,30 +112,33 @@ body {
     max-height: 800px;
     display: block;
     margin: auto;
-    border: 1px solid #dbeaff; /* Bordo pastello per l'immagine */
-    border-radius: 8px; /* Angoli arrotondati */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border: 1px solid #ced4da; /* Bordo sottile grigio */
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 /* --- Tabelle (Parametri, Log, etc.) --- */
 .table {
-    margin-top: 15px;
+    margin-top: 20px;
     font-size: 0.95rem;
-    color: #3f526b; /* Testo della tabella scuro */
-    border: 1px solid #e0e7f0; /* Bordo tabella chiaro */
-    border-radius: 10px; /* Bordi stondati */
+    color: #333d47;
+    border: 1px solid #e5e9ed;
+    border-radius: 8px;
     overflow: hidden;
+    width: 100%; /* Assicura che la tabella occupi tutta la larghezza */
 }
 
 .table th {
-    background-color: #a8d5ff; /* Blu pastello per l'intestazione */
-    color: #3f526b; /* Testo scuro sull'intestazione */
+    background-color: #007bff; /* Blu primario per l'intestazione */
+    color: white;
     font-weight: 600;
-    border-color: #a8d5ff;
+    border-color: #007bff;
+    padding: 12px 15px; /* Padding interno più confortevole */
+    text-transform: uppercase;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #f7fbff; /* Riga dispari molto chiara */
+    background-color: #f7f9fb; /* Riga dispari molto chiara */
 }
 
 .table-striped tbody tr:nth-of-type(even) {
@@ -141,69 +146,89 @@ body {
 }
 
 .table td, .table th {
-    border-color: #e0e7f0; /* Colore del bordo delle celle molto chiaro */
+    border-color: #e5e9ed; /* Colore del bordo delle celle */
+    padding: 10px 15px;
 }
 
 /* --- Card di Stato (Operative Status) --- */
 .card {
-    border-radius: 12px; /* Bordi più stondati */
+    border-radius: 8px;
     overflow: hidden;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    border: 1px solid #e0e7f0;
+    border: 1px solid #e5e9ed;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Ombra leggera per le card */
 }
 
 .card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.card-body { /* Aggiunto stile per il corpo della card */
+    padding: 1.25rem; /* Padding Bootstrap standard */
 }
 
 .card-title {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-    color: #3f526b; /* Titolo della card scuro */
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: inherit; /* Lascia che il colore del testo sia ereditato dalla card */
 }
 
 .card-text {
-    color: #6a829e; /* Testo descrittivo più chiaro */
+    font-size: 1rem;
+    color: inherit; /* Lascia che il colore del testo sia ereditato dalla card */
 }
 
-/* Override colori Bootstrap per status con tonalità pastello */
+/* Override colori Bootstrap per status: più saturi e pragmatici */
 .card.bg-success {
-    background-color: #a4e1a4 !important; /* Verde pastello */
-    color: #2e6b2e !important; /* Testo verde scuro */
+    background-color: #28a745 !important; /* Verde Bootstrap standard, efficace */
+    color: white !important;
 }
 .card.bg-warning {
-    background-color: #ffe8a1 !important; /* Giallo pastello */
-    color: #92751f !important; /* Testo marrone scuro */
+    background-color: #ffc107 !important; /* Giallo Bootstrap standard, chiaro */
+    color: #333d47 !important; /* Testo scuro per contrasto su giallo */
 }
 .card.bg-danger {
-    background-color: #ffb6b6 !important; /* Rosso pastello */
-    color: #9c3f3f !important; /* Testo rosso scuro */
+    background-color: #dc3545 !important; /* Rosso Bootstrap standard, per alert */
+    color: white !important;
 }
 .card.bg-info {
-    background-color: #a8d5ff !important; /* Blu pastello chiaro */
-    color: #3f526b !important; /* Testo blu scuro */
+    background-color: #17a2b8 !important; /* Blu info standard, per dati informativi */
+    color: white !important;
 }
 
 /* --- Form di Invio Alert --- */
 #alert-form {
-    padding: 25px;
+    padding: 30px;
     background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e0e7f0;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e9ed;
 }
 
 #alert-form label {
-    color: #3f526b;
+    color: #333d47;
+    font-weight: 500;
+    margin-bottom: 10px;
+    display: block; /* Ogni label su una riga separata */
 }
 
 #alert-form textarea.form-control {
-    background-color: #f7fbff;
-    border: 1px solid #cce0f5;
-    color: #3f526b;
+    background-color: #f7f9fb;
+    border: 1px solid #ced4da;
+    color: #333d47;
     resize: vertical;
-    border-radius: 8px; /* Bordi arrotondati per textarea */
+    border-radius: 6px;
+    padding: 12px 15px; /* Più padding */
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+#alert-form textarea.form-control:focus {
+    border-color: #007bff; /* Bordo blu al focus */
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+    background-color: #ffffff;
 }
 
 #alert-form textarea.form-control::placeholder {
@@ -211,86 +236,73 @@ body {
 }
 
 #alert-form .btn-danger {
-    background-color: #ff7676; /* Rosso pastello più vivace */
-    border-color: #ff7676;
+    background-color: #dc3545; /* Rosso deciso */
+    border-color: #dc3545;
     font-weight: 600;
-    transition: background-color 0.3s, transform 0.2s;
-    border-radius: 8px; /* Bordi arrotondati per il bottone */
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+    border-radius: 6px;
+    padding: 10px 25px; /* Bottone più grande */
+    text-transform: uppercase;
 }
 
 #alert-form .btn-danger:hover {
-    background-color: #ff5f5f;
-    border-color: #ff5f5f;
+    background-color: #c82333;
+    border-color: #bd2130;
     transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 #alert-confirmation.alert-success {
-    background-color: #a4e1a4;
-    border-color: #8ccf8c;
-    color: #2e6b2e;
+    background-color: #d4edda; /* Sfondo verde chiaro */
+    border-color: #c3e6cb;
+    color: #155724; /* Testo verde scuro */
     font-weight: 500;
-    border-radius: 8px;
+    border-radius: 6px;
+    padding: 15px 20px;
 }
 
 /* --- Altri elementi specifici --- */
 #active-alerts {
-    padding: 15px 20px;
-    border-radius: 10px; /* Bordi arrotondati */
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-    background-color: #ffb6b6; /* Colore alert pastello pericoloso */
-    color: #9c3f3f; /* Testo scuro per contrasto */
-    border: 1px solid #e09f9f;
+    padding: 18px 25px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-size: 1.15rem;
+    background-color: #f8d7da; /* Sfondo rosso chiaro per gli alert */
+    color: #721c24; /* Testo rosso scuro */
+    border: 1px solid #f5c6cb;
+    font-weight: 600; /* Testo più grassetto */
 }
 
 #active-alerts i {
-    font-size: 1.8rem;
+    font-size: 2rem; /* Icona più grande */
     vertical-align: middle;
-    color: #9c3f3f;
+    margin-right: 10px;
+    color: #dc3545; /* Colore icona rosso deciso */
 }
 
 /* Stili per link e testo */
 a {
-    color: #6a95e0; /* Colore link pastello */
+    color: #007bff; /* Link blu primario */
     text-decoration: none;
     transition: color 0.2s;
+    font-weight: 500;
 }
 
 a:hover {
-    color: #7abeff; /* Colore link all'hover */
+    color: #0056b3; /* Blu più scuro all'hover */
     text-decoration: underline;
 }
 
 p.text-muted {
-    color: #6a829e !important; /* Testo muted per il tema chiaro */
+    color: #6c757d !important; /* Grigio più standard per testo muted */
+    font-size: 0.9rem;
 }
 
 /* Stili per i grafici (Chart.js) */
 canvas {
-    background-color: #ffffff; /* Sfondo bianco per il canvas */
-    border-radius: 10px;
-    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px; /* Più padding interno */
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-
-.chart-legend ul {
-    list-style: none;
-    padding: 0;
-    text-align: center;
-}
-
-.chart-legend li {
-    display: inline-block;
-    margin-right: 15px;
-    font-size: 0.9em;
-    color: #3f526b;
-}
-
-.chart-legend span {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    margin-right: 5px;
-    border-radius: 3px;
-    vertical-align: middle;
+    border: 1px solid #e5e9ed;
 }
