@@ -145,4 +145,118 @@ body {
 
 /* --- Card di Stato (Operative Status) --- */
 .card {
-    border
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: 1px solid #3a3a5a; /* Bordo per le card */
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+}
+
+.card-title {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: #f0f0f0; /* Titolo della card chiaro */
+}
+
+.card-text {
+    color: #c0c0c0; /* Testo descrittivo più chiaro */
+}
+
+/* Override colori Bootstrap per status con tonalità dark/tech */
+.card.bg-success {
+    background-color: #21a179 !important; /* Verde scuro, techy */
+    color: #e0e0e0;
+}
+.card.bg-warning {
+    background-color: #e6a700 !important; /* Giallo dorato */
+    color: #1a1a2e; /* Testo scuro per contrasto */
+}
+.card.bg-danger {
+    background-color: #e04e4e !important; /* Rosso vibrante */
+    color: #e0e0e0;
+}
+.card.bg-info {
+    background-color: #00bcd4 !important; /* Blu ciano usato come accento */
+    color: #1a1a2e; /* Testo scuro per contrasto */
+}
+
+/* --- Form di Invio Alert --- */
+#alert-form {
+    padding: 20px;
+    background-color: #2a2a4a;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    border: 1px solid #3a3a5a;
+}
+
+#alert-form label {
+    color: #e0e0e0;
+}
+
+#alert-form textarea.form-control {
+    background-color: #3a3a5a;
+    border: 1px solid #555;
+    color: #e0e0e0;
+    resize: vertical; /* Permette all'utente di ridimensionare verticalmente */
+}
+
+#alert-form textarea.form-control::placeholder {
+    color: #a0a0a0;
+}
+
+#alert-form .btn-danger {
+    background-color: #e04e4e; /* Rosso vibrante */
+    border-color: #e04e4e;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#alert-form .btn-danger:hover {
+    background-color: #c03d3d;
+    border-color: #b03030;
+    transform: translateY(-2px);
+}
+
+#alert-confirmation.alert-success {
+    background-color: #21a179;
+    border-color: #1a8a68;
+    color: #e0e0e0;
+    font-weight: 500;
+}
+
+/* --- Altri elementi specifici --- */
+#active-alerts {
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    background-color: #e04e4e; /* Colore alert pericoloso */
+    color: #e0e0e0;
+    border: 1px solid #c03d3d;
+}
+
+#active-alerts i {
+    font-size: 1.8rem;
+    vertical-align: middle;
+    color: #e0e0e0;
+}
+
+/* Stili per link e testo */
+a {
+    color: #00bcd4; /* Colore link techy */
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #4fc3f7; /* Colore link all'hover */
+    text-decoration: underline;
+}
+
+p.text-muted {
+    color: #a0a0a0 !important; /* Testo muted per il tema scuro */
+}
