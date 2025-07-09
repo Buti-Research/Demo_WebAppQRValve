@@ -2,10 +2,14 @@
 
 /* --- Stili Generali --- */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #002864;
-    color: #000766;
+    font-family: 'Roboto', sans-serif; /* Imposta il font Roboto */
+    background-color: #1a1a2e; /* Sfondo molto scuro, quasi blu navy */
+    color: #e0e0e0; /* Testo chiaro generale */
 }
+
+/* Importa il font Roboto da Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
 
 /* --- Header e Logo --- */
 .dashboard-header {
@@ -13,66 +17,89 @@ body {
     align-items: center;
     margin-bottom: 30px;
     padding-bottom: 15px;
-    border-bottom: 1px solid #dee2e6;
-    background-color: #b9b9b9;
+    border-bottom: 1px solid #333; /* Linea divisoria più scura */
+    background-color: #2e2e4e; /* Sfondo leggermente più chiaro del body */
     padding: 15px 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Ombra più pronunciata per profondità */
 }
 
 .dashboard-header .logo {
-    height: 60px; /* Altezza del logo, adatta a piacimento */
-    margin-right: 25px; /* Spazio tra logo e titolo */
+    height: 60px;
+    margin-right: 25px;
 }
 
 .dashboard-header h1 {
     margin-bottom: 0;
     flex-grow: 1;
     text-align: center;
-    color: #007bff;
-    font-weight: 600;
+    color: #00bcd4; /* Accento blu ciano per il titolo */
+    font-weight: 700; /* Più grassetto */
+    letter-spacing: 1.5px; /* Spaziatura tra le lettere per un look più tech */
+    text-shadow: 0 0 8px rgba(0, 188, 212, 0.5); /* Effetto luminoso per il titolo */
 }
 
 /* --- Sezioni della Dashboard --- */
 .dashboard-section {
-    background-color: #d1d1d1;
+    background-color: #2a2a4a; /* Sfondo delle sezioni scuro ma distinto dal body */
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(2, 25, 160, 0.08);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Ombra più profonda */
     padding: 25px;
     margin-bottom: 25px;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: 1px solid #3a3a5a; /* Bordo sottile per definizione */
 }
 
 .dashboard-section:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px); /* Effetto "alza" più pronunciato */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6); /* Ombra maggiore all'hover */
 }
 
 .dashboard-section h2 {
-    color: #0056b3;
-    border-bottom: 2px solid #aecde0;
+    color: #4fc3f7; /* Blu chiaro per i sottotitoli delle sezioni */
+    border-bottom: 2px solid #00bcd4; /* Linea di accento sotto i titoli */
     padding-bottom: 12px;
     margin-bottom: 20px;
-    font-size: 1.8rem;
+    font-size: 2rem; /* Titoli leggermente più grandi */
     font-weight: 600;
+    text-shadow: 0 0 5px rgba(79, 195, 247, 0.3);
 }
 
 /* --- Accordion (per Datasheet e Documenti) --- */
+.accordion-item {
+    border: 1px solid #3a3a5a; /* Bordo per gli item dell'accordion */
+    margin-bottom: 10px; /* Spazio tra gli item se ce ne fossero più di uno */
+    border-radius: 8px;
+    overflow: hidden; /* Assicura che i bordi arrotondati funzionino bene */
+}
+
 .accordion-button {
     font-size: 1.25rem;
     font-weight: 500;
-    color: #007bff;
-    background-color: #e4e4e4;
-    border-radius: 8px !important;
+    color: #81d4fa; /* Testo chiaro per i bottoni accordion */
+    background-color: #3f3f6a; /* Sfondo scuro per il bottone */
+    border-radius: 8px !important; /* Mantiene i bordi arrotondati */
+    border: none !important; /* Rimuovi il bordo di default del bottone */
+    transition: background-color 0.3s ease-in-out;
+}
+
+.accordion-button:hover {
+    background-color: #4a4a7a; /* Sfondo leggermente più chiaro all'hover */
 }
 
 .accordion-button:not(.collapsed) {
-    color: #0056b3;
-    background-color: #d0e7ff;
-    box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+    color: #00bcd4; /* Colore più acceso quando aperto */
+    background-color: #2a2a4a; /* Sfondo uguale alla sezione quando aperto */
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.2);
+    border-bottom: 1px solid #00bcd4 !important; /* Linea di accento quando aperto */
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
 }
 
 .accordion-body {
     padding: 20px;
-    background-color: #fdfdff;
+    background-color: #2a2a4a; /* Sfondo uguale alla sezione */
+    border-top: 1px solid #3a3a5a; /* Separazione leggera */
+    color: #e0e0e0; /* Testo chiaro */
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }
@@ -82,68 +109,40 @@ body {
     max-height: 800px;
     display: block;
     margin: auto;
+    border: 1px solid #3a3a5a; /* Bordo per l'immagine */
+    border-radius: 5px; /* Angoli leggermente arrotondati */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Ombra per l'immagine */
 }
 
 /* --- Tabelle (Parametri, Log, etc.) --- */
 .table {
     margin-top: 15px;
     font-size: 0.95rem;
+    color: #e0e0e0; /* Testo della tabella chiaro */
+    border: 1px solid #3a3a5a; /* Bordo tabella */
+    border-radius: 8px;
+    overflow: hidden; /* Per bordi arrotondati */
 }
 
 .table th {
-    background-color: #007bff;
-    color: white;
-    font-weight: 500;
+    background-color: #00bcd4; /* Blu ciano per l'intestazione della tabella */
+    color: #1a1a2e; /* Testo scuro sull'intestazione */
+    font-weight: 600;
+    border-color: #00bcd4;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(0, 123, 255, 0.05);
+    background-color: #2e2e4e; /* Riga dispari più scura */
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #2a2a4a; /* Riga pari chiara */
+}
+
+.table td, .table th {
+    border-color: #3a3a5a; /* Colore del bordo delle celle */
 }
 
 /* --- Card di Stato (Operative Status) --- */
 .card {
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.2s ease-in-out;
-}
-
-.card:hover {
-    transform: translateY(-2px);
-}
-
-.card-title {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-}
-
-/* Override colori Bootstrap per status (opzionale, se vuoi tonalità diverse) */
-.card.bg-success { background-color: #28a745 !important; }
-.card.bg-warning { background-color: #ffc107 !important; }
-.card.bg-danger { background-color: #dc3545 !important; }
-.card.bg-info { background-color: #17a2b8 !important; }
-
-/* --- Form di Invio Alert --- */
-#alert-form .btn-danger {
-    background-color: #dc3545;
-    border-color: #dc3545;
-    font-weight: 600;
-    transition: background-color 0.3s;
-}
-
-#alert-form .btn-danger:hover {
-    background-color: #c82333;
-    border-color: #bd2130;
-}
-
-/* --- Altri elementi specifici --- */
-#active-alerts {
-    padding: 15px 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-}
-
-#active-alerts i {
-    font-size: 1.8rem;
-    vertical-align: middle;
-}
+    border
