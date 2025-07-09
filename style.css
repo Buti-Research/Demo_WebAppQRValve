@@ -15,92 +15,174 @@ body {
 .dashboard-header {
     display: flex;
     align-items: center;
-    margin-bottom: 40px; /* Più spazio sotto l'header */
+    /* margin-bottom gestito dal div wrapper delle sezioni */
     padding: 20px 30px; /* Padding generoso */
     background-color: #ffffff; /* Sfondo bianco puro */
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* Ombra definita ma non pesante */
     border-radius: 8px; /* Bordi leggermente stondati, più pragmatici */
     margin-top: 20px;
+    margin-bottom: 30px; /* Spazio sotto l'header */
     border: 1px solid #e5e9ed; /* Bordo sottile */
 }
 
 .dashboard-header .logo {
     height: 70px; /* Logo più grande per maggiore impatto */
     margin-right: 35px; /* Spazio aumentato */
+    flex-shrink: 0; /* Impedisce al logo di ridursi */
+}
+
+/* Contenitore per il titolo e gli indicatori di stato */
+.dashboard-header .header-content {
+    flex-grow: 1; /* Permette al contenuto di occupare lo spazio rimanente */
+    display: flex;
+    flex-direction: column; /* Impila titolo e indicatori verticalmente */
+    align-items: center; /* Centra orizzontalmente gli elementi interni */
 }
 
 .dashboard-header h1 {
-    margin-bottom: 0;
-    flex-grow: 1;
-    text-align: center;
+    margin-bottom: 15px; /* Spazio sotto il titolo e sopra gli indicatori */
     color: #007bff; /* Blu primario Bootstrap, forte e diretto */
     font-weight: 700; /* Molto grassetto */
     letter-spacing: 0.8px; /* Spaziatura leggera per leggibilità */
     text-transform: uppercase; /* Testo in maiuscolo per un look più "command center" */
     font-size: 2.5rem; /* Titolo più grande */
+    text-align: center; /* Rende il titolo centrato anche se flex-grow: 1 lo spinge */
+    width: 100%; /* Assicura che l'H1 occupi la larghezza disponibile per il text-align */
 }
 
-/* --- Sezioni della Dashboard --- */
+/* Contenitore per gli indicatori di stato (le card) */
+.status-indicators {
+    display: flex;
+    justify-content: center; /* Centra gli indicatori */
+    align-items: center;
+    flex-wrap: wrap; /* Permette agli indicatori di andare a capo su schermi piccoli */
+    gap: 15px; /* Spazio tra gli indicatori */
+    width: 100%; /* Occupa tutta la larghezza disponibile */
+}
+
+/* Stili specifici per le card di stato nell'header */
+.status-card {
+    min-width: 120px; /* Larghezza minima per le card */
+    max-width: 180px; /* Larghezza massima per evitare che si allunghino troppo */
+    flex-basis: 0; /* Base per flex-grow */
+    flex-grow: 1; /* Permette alle card di espandersi */
+    text-align: center;
+    padding: 10px 15px; /* Padding interno ridotto per essere più compatti */
+    border-radius: 6px; /* Bordi leggermente meno stondati per compattare */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Ombra più leggera */
+    border: none; /* Rimuovi il bordo standard delle card */
+}
+
+.status-card .card-title {
+    font-size: 0.85rem; /* Titolo della card più piccolo */
+    font-weight: 600;
+    margin-bottom: 3px; /* Spazio ridotto sotto il titolo */
+    text-transform: uppercase;
+}
+
+.status-card .card-text {
+    font-size: 1.2rem; /* Valore più grande per risaltare */
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+/* Media Queries per responsività - Adatta il layout per schermi più piccoli */
+@media (max-width: 768px) {
+    .dashboard-header {
+        flex-direction: column; /* Logo sopra titolo e status su schermi piccoli */
+        text-align: center;
+        padding: 15px 20px;
+    }
+    .dashboard-header .logo {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    .dashboard-header .header-content {
+        align-items: center;
+    }
+    .dashboard-header h1 {
+        font-size: 2rem;
+    }
+    .status-indicators {
+        flex-direction: row; /* Mantieni in riga gli indicatori se c'è spazio */
+        justify-content: center;
+        margin-top: 15px;
+    }
+    .status-card {
+        flex-basis: auto; /* Permette agli elementi di ridimensionarsi */
+        width: 48%; /* Due per riga su schermi piccoli */
+        margin-bottom: 10px; /* Spazio tra le card in modalità multi-riga */
+    }
+}
+
+@media (max-width: 480px) {
+    .status-card {
+        width: 100%; /* Una card per riga su schermi molto piccoli */
+    }
+}
+
+
+/* --- Sezioni della Dashboard (il resto come prima) --- */
 .dashboard-section {
-    background-color: #ffffff; /* Sfondo bianco per tutte le sezioni */
-    border-radius: 8px; /* Bordi leggermente stondati, coerenza con l'header */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Ombra chiara e definita */
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     padding: 30px;
     margin-bottom: 30px;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    border: 1px solid #e5e9ed; /* Bordo sottile per delineare */
+    border: 1px solid #e5e9ed;
 }
 
 .dashboard-section:hover {
-    transform: translateY(-4px); /* Effetto alza leggermente più evidente */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Ombra più intensa all'hover */
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .dashboard-section h2 {
-    color: #0056b3; /* Blu scuro per i sottotitoli */
-    border-bottom: 2px solid #ced4da; /* Linea grigia sottile e chiara */
+    color: #0056b3;
+    border-bottom: 2px solid #ced4da;
     padding-bottom: 15px;
     margin-bottom: 25px;
-    font-size: 2.2rem; /* Sottotitoli più grandi e leggibili */
+    font-size: 2.2rem;
     font-weight: 600;
-    text-transform: uppercase; /* Maiuscolo anche qui per uniformità */
+    text-transform: uppercase;
 }
 
 /* --- Accordion (per Datasheet e Documenti) --- */
 .accordion-item {
-    border: 1px solid #e5e9ed; /* Bordo sottile */
+    border: 1px solid #e5e9ed;
     margin-bottom: 10px;
-    border-radius: 8px; /* Bordi stondati */
+    border-radius: 8px;
     overflow: hidden;
 }
 
 .accordion-button {
     font-size: 1.25rem;
     font-weight: 500;
-    color: #333d47; /* Testo scuro per il bottone */
-    background-color: #f7f9fb; /* Sfondo molto chiaro */
+    color: #333d47;
+    background-color: #f7f9fb;
     border-radius: 8px !important;
     border: none !important;
     transition: background-color 0.2s ease-in-out;
-    padding: 18px 25px; /* Padding generoso per un'area cliccabile ampia */
+    padding: 18px 25px;
 }
 
 .accordion-button:hover {
-    background-color: #e9ecef; /* Sfondo grigio leggero all'hover */
+    background-color: #e9ecef;
 }
 
 .accordion-button:not(.collapsed) {
-    color: #0056b3; /* Blu scuro quando aperto */
-    background-color: #e9f5ff; /* Sfondo azzurro chiaro quando aperto */
+    color: #0056b3;
+    background-color: #e9f5ff;
     box-shadow: inset 0 -1px 0 rgba(0,0,0,.1);
-    border-bottom: 1px solid #cce0ff !important; /* Linea di accento blu */
+    border-bottom: 1px solid #cce0ff !important;
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
 }
 
 .accordion-body {
     padding: 20px;
-    background-color: #ffffff; /* Contenuto bianco */
+    background-color: #ffffff;
     border-top: 1px solid #e5e9ed;
     color: #333d47;
     border-bottom-left-radius: 8px;
@@ -112,7 +194,7 @@ body {
     max-height: 800px;
     display: block;
     margin: auto;
-    border: 1px solid #ced4da; /* Bordo sottile grigio */
+    border: 1px solid #ced4da;
     border-radius: 6px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
@@ -125,38 +207,39 @@ body {
     border: 1px solid #e5e9ed;
     border-radius: 8px;
     overflow: hidden;
-    width: 100%; /* Assicura che la tabella occupi tutta la larghezza */
+    width: 100%;
 }
 
 .table th {
-    background-color: #007bff; /* Blu primario per l'intestazione */
+    background-color: #007bff;
     color: white;
     font-weight: 600;
     border-color: #007bff;
-    padding: 12px 15px; /* Padding interno più confortevole */
+    padding: 12px 15px;
     text-transform: uppercase;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #f7f9fb; /* Riga dispari molto chiara */
+    background-color: #f7f9fb;
 }
 
 .table-striped tbody tr:nth-of-type(even) {
-    background-color: #ffffff; /* Riga pari bianca */
+    background-color: #ffffff;
 }
 
 .table td, .table th {
-    border-color: #e5e9ed; /* Colore del bordo delle celle */
+    border-color: #e5e9ed;
     padding: 10px 15px;
 }
 
 /* --- Card di Stato (Operative Status) --- */
-.card {
+/* Le card di stato sono ora gestite principalmente da .status-card sopra */
+.card { /* Stili generici per le card non-status-card */
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     border: 1px solid #e5e9ed;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Ombra leggera per le card */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .card:hover {
@@ -164,8 +247,8 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.card-body { /* Aggiunto stile per il corpo della card */
-    padding: 1.25rem; /* Padding Bootstrap standard */
+.card-body {
+    padding: 1.25rem;
 }
 
 .card-title {
@@ -173,29 +256,29 @@ body {
     margin-bottom: 8px;
     font-weight: 600;
     text-transform: uppercase;
-    color: inherit; /* Lascia che il colore del testo sia ereditato dalla card */
+    color: inherit;
 }
 
 .card-text {
     font-size: 1rem;
-    color: inherit; /* Lascia che il colore del testo sia ereditato dalla card */
+    color: inherit;
 }
 
 /* Override colori Bootstrap per status: più saturi e pragmatici */
 .card.bg-success {
-    background-color: #28a745 !important; /* Verde Bootstrap standard, efficace */
+    background-color: #28a745 !important;
     color: white !important;
 }
 .card.bg-warning {
-    background-color: #ffc107 !important; /* Giallo Bootstrap standard, chiaro */
-    color: #333d47 !important; /* Testo scuro per contrasto su giallo */
+    background-color: #ffc107 !important;
+    color: #333d47 !important;
 }
 .card.bg-danger {
-    background-color: #dc3545 !important; /* Rosso Bootstrap standard, per alert */
+    background-color: #dc3545 !important;
     color: white !important;
 }
 .card.bg-info {
-    background-color: #17a2b8 !important; /* Blu info standard, per dati informativi */
+    background-color: #17a2b8 !important;
     color: white !important;
 }
 
@@ -212,7 +295,7 @@ body {
     color: #333d47;
     font-weight: 500;
     margin-bottom: 10px;
-    display: block; /* Ogni label su una riga separata */
+    display: block;
 }
 
 #alert-form textarea.form-control {
@@ -221,12 +304,12 @@ body {
     color: #333d47;
     resize: vertical;
     border-radius: 6px;
-    padding: 12px 15px; /* Più padding */
+    padding: 12px 15px;
     transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 #alert-form textarea.form-control:focus {
-    border-color: #007bff; /* Bordo blu al focus */
+    border-color: #007bff;
     box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
     background-color: #ffffff;
 }
@@ -236,12 +319,12 @@ body {
 }
 
 #alert-form .btn-danger {
-    background-color: #dc3545; /* Rosso deciso */
+    background-color: #dc3545;
     border-color: #dc3545;
     font-weight: 600;
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
     border-radius: 6px;
-    padding: 10px 25px; /* Bottone più grande */
+    padding: 10px 25px;
     text-transform: uppercase;
 }
 
@@ -253,9 +336,9 @@ body {
 }
 
 #alert-confirmation.alert-success {
-    background-color: #d4edda; /* Sfondo verde chiaro */
+    background-color: #d4edda;
     border-color: #c3e6cb;
-    color: #155724; /* Testo verde scuro */
+    color: #155724;
     font-weight: 500;
     border-radius: 6px;
     padding: 15px 20px;
@@ -267,34 +350,34 @@ body {
     border-radius: 8px;
     margin-bottom: 25px;
     font-size: 1.15rem;
-    background-color: #f8d7da; /* Sfondo rosso chiaro per gli alert */
-    color: #721c24; /* Testo rosso scuro */
+    background-color: #f8d7da;
+    color: #721c24;
     border: 1px solid #f5c6cb;
-    font-weight: 600; /* Testo più grassetto */
+    font-weight: 600;
 }
 
 #active-alerts i {
-    font-size: 2rem; /* Icona più grande */
+    font-size: 2rem;
     vertical-align: middle;
     margin-right: 10px;
-    color: #dc3545; /* Colore icona rosso deciso */
+    color: #dc3545;
 }
 
 /* Stili per link e testo */
 a {
-    color: #007bff; /* Link blu primario */
+    color: #007bff;
     text-decoration: none;
     transition: color 0.2s;
     font-weight: 500;
 }
 
 a:hover {
-    color: #0056b3; /* Blu più scuro all'hover */
+    color: #0056b3;
     text-decoration: underline;
 }
 
 p.text-muted {
-    color: #6c757d !important; /* Grigio più standard per testo muted */
+    color: #6c757d !important;
     font-size: 0.9rem;
 }
 
@@ -302,7 +385,15 @@ p.text-muted {
 canvas {
     background-color: #ffffff;
     border-radius: 8px;
-    padding: 20px; /* Più padding interno */
+    padding: 20px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     border: 1px solid #e5e9ed;
+}
+
+/* Media queries per i grafici se necessario */
+@media (max-width: 992px) {
+    /* Esempio: se i grafici sono in colonne, potrebbero dover essere impilati */
+    .chart-container {
+        margin-bottom: 20px; /* Spazio tra i grafici impilati */
+    }
 }
