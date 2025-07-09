@@ -63,11 +63,23 @@
             <h1 class="text-center text-primary flex-grow-1">Inserire nome Valvola !!!! ABCDEFG</h1>
         </header>
 
-        <section id="valve-gad" class="dashboard-section">
-            <h2>Valve DataSheet</h2>
-            <img src="images/valve_design.png" alt="BSE-S 10" #600-SF" class="img-fluid" style="max-height: 800px; display: block; margin: auto;">
-            <p class="text-muted mt-2 text-center">Valve Datasheet</p>
-        </section>
+<section id="valve-gad-accordion" class="dashboard-section">
+    <div class="accordion" id="valveGadAccordionParent">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingValveGad">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseValveGad" aria-expanded="false" aria-controls="collapseValveGad">
+                    <h2>Valve Datasheet</h2>
+                </button>
+            </h2>
+            <div id="collapseValveGad" class="accordion-collapse collapse" aria-labelledby="headingValveGad" data-bs-parent="#valveGadAccordionParent">
+                <div class="accordion-body">
+                    <img src="images/valve_design.png" alt="BSE-S 10 #600-SF" class="img-fluid" style="max-height: 800px; display: block; margin: auto;">
+                    <p class="text-muted mt-2 text-center">Valve Datasheet</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
         <div class="row">
             <div class="col-md-6">
