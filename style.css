@@ -3,8 +3,8 @@
 /* --- Stili Generali --- */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f0f2f5;
-    color: #333;
+    background-color: #002864;
+    color: #fffbfb;
 }
 
 /* --- Header e Logo --- */
@@ -14,7 +14,7 @@ body {
     margin-bottom: 30px;
     padding-bottom: 15px;
     border-bottom: 1px solid #dee2e6;
-    background-color: #ffffff;
+    background-color: #b9b9b9;
     padding: 15px 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
@@ -34,9 +34,9 @@ body {
 
 /* --- Sezioni della Dashboard --- */
 .dashboard-section {
-    background-color: #ffffff;
+    background-color: #d1d1d1;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 10px rgba(2, 25, 160, 0.08);
     padding: 25px;
     margin-bottom: 25px;
     transition: transform 0.2s ease-in-out;
@@ -60,7 +60,7 @@ body {
     font-size: 1.25rem;
     font-weight: 500;
     color: #007bff;
-    background-color: #e9f5ff;
+    background-color: #e4e4e4;
     border-radius: 8px !important;
 }
 
