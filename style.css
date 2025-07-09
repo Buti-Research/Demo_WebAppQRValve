@@ -1,15 +1,14 @@
 /* style.css */
 
-/* --- Stili Generali --- */
-body {
-    font-family: 'Roboto', sans-serif; /* Imposta il font Roboto */
-    background-color: #1a1a2e; /* Sfondo molto scuro, quasi blu navy */
-    color: #e0e0e0; /* Testo chiaro generale */
-}
-
 /* Importa il font Roboto da Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
+/* --- Stili Generali --- */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8fbfd; /* Sfondo molto chiaro, quasi bianco-bluastro */
+    color: #3f526b; /* Testo principale grigio-blu scuro */
+}
 
 /* --- Header e Logo --- */
 .dashboard-header {
@@ -17,91 +16,93 @@ body {
     align-items: center;
     margin-bottom: 30px;
     padding-bottom: 15px;
-    border-bottom: 1px solid #333; /* Linea divisoria più scura */
-    background-color: #2e2e4e; /* Sfondo leggermente più chiaro del body */
-    padding: 15px 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Ombra più pronunciata per profondità */
+    border-bottom: 1px solid #e0e7f0; /* Linea divisoria leggera */
+    background-color: #ffffff; /* Sfondo bianco puro per l'header */
+    padding: 15px 25px; /* Aumentato il padding */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Ombra leggera ma presente */
+    border-radius: 15px; /* Bordi più stondati */
+    margin-top: 15px; /* Spazio in alto per il contenitore */
 }
 
 .dashboard-header .logo {
-    height: 60px;
-    margin-right: 25px;
+    height: 65px; /* Logo leggermente più grande */
+    margin-right: 30px; /* Spazio aumentato tra logo e titolo */
 }
 
 .dashboard-header h1 {
     margin-bottom: 0;
     flex-grow: 1;
     text-align: center;
-    color: #00bcd4; /* Accento blu ciano per il titolo */
-    font-weight: 700; /* Più grassetto */
-    letter-spacing: 1.5px; /* Spaziatura tra le lettere per un look più tech */
-    text-shadow: 0 0 8px rgba(0, 188, 212, 0.5); /* Effetto luminoso per il titolo */
+    color: #7abeff; /* Blu pastello chiaro per il titolo */
+    font-weight: 700;
+    letter-spacing: 1px; /* Spaziatura ridotta rispetto al tema tech */
+    text-shadow: none; /* Rimosso l'effetto luminoso */
 }
 
 /* --- Sezioni della Dashboard --- */
 .dashboard-section {
-    background-color: #2a2a4a; /* Sfondo delle sezioni scuro ma distinto dal body */
-    border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Ombra più profonda */
-    padding: 25px;
-    margin-bottom: 25px;
+    background-color: #ffffff; /* Sfondo bianco per le sezioni */
+    border-radius: 15px; /* Bordi molto stondati */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* Ombra più morbida */
+    padding: 30px; /* Più padding */
+    margin-bottom: 30px; /* Più margine in basso */
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    border: 1px solid #3a3a5a; /* Bordo sottile per definizione */
+    border: 1px solid #e0e7f0; /* Bordo sottile per definizione */
 }
 
 .dashboard-section:hover {
-    transform: translateY(-5px); /* Effetto "alza" più pronunciato */
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6); /* Ombra maggiore all'hover */
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12); /* Ombra più evidente all'hover */
 }
 
 .dashboard-section h2 {
-    color: #4fc3f7; /* Blu chiaro per i sottotitoli delle sezioni */
-    border-bottom: 2px solid #00bcd4; /* Linea di accento sotto i titoli */
-    padding-bottom: 12px;
-    margin-bottom: 20px;
-    font-size: 2rem; /* Titoli leggermente più grandi */
+    color: #6a95e0; /* Blu pastello medio per i sottotitoli delle sezioni */
+    border-bottom: 2px solid #a8d5ff; /* Linea pastello sotto i titoli */
+    padding-bottom: 15px; /* Più padding sotto la linea */
+    margin-bottom: 25px;
+    font-size: 2rem;
     font-weight: 600;
-    text-shadow: 0 0 5px rgba(79, 195, 247, 0.3);
+    text-shadow: none;
 }
 
 /* --- Accordion (per Datasheet e Documenti) --- */
 .accordion-item {
-    border: 1px solid #3a3a5a; /* Bordo per gli item dell'accordion */
-    margin-bottom: 10px; /* Spazio tra gli item se ce ne fossero più di uno */
-    border-radius: 8px;
-    overflow: hidden; /* Assicura che i bordi arrotondati funzionino bene */
+    border: 1px solid #cfe2ff; /* Bordo leggero per gli item dell'accordion */
+    margin-bottom: 10px;
+    border-radius: 12px; /* Bordi più stondati per ogni item */
+    overflow: hidden;
 }
 
 .accordion-button {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 500;
-    color: #81d4fa; /* Testo chiaro per i bottoni accordion */
-    background-color: #3f3f6a; /* Sfondo scuro per il bottone */
-    border-radius: 8px !important; /* Mantiene i bordi arrotondati */
-    border: none !important; /* Rimuovi il bordo di default del bottone */
+    color: #5579b8; /* Blu pastello scuro per il testo del bottone */
+    background-color: #e6f0ff; /* Sfondo molto chiaro per il bottone */
+    border-radius: 12px !important;
+    border: none !important;
     transition: background-color 0.3s ease-in-out;
 }
 
 .accordion-button:hover {
-    background-color: #4a4a7a; /* Sfondo leggermente più chiaro all'hover */
+    background-color: #dbeaff; /* Sfondo leggermente più scuro all'hover */
 }
 
 .accordion-button:not(.collapsed) {
-    color: #00bcd4; /* Colore più acceso quando aperto */
-    background-color: #2a2a4a; /* Sfondo uguale alla sezione quando aperto */
-    box-shadow: inset 0 -1px 0 rgba(0,0,0,.2);
-    border-bottom: 1px solid #00bcd4 !important; /* Linea di accento quando aperto */
+    color: #4a6fa8; /* Colore più scuro quando aperto */
+    background-color: #ccdefd; /* Sfondo pastello quando aperto */
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+    border-bottom: 1px solid #a8d5ff !important;
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
 }
 
 .accordion-body {
     padding: 20px;
-    background-color: #2a2a4a; /* Sfondo uguale alla sezione */
-    border-top: 1px solid #3a3a5a; /* Separazione leggera */
-    color: #e0e0e0; /* Testo chiaro */
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    background-color: #f7fbff; /* Sfondo molto chiaro per il contenuto */
+    border-top: 1px solid #e0e7f0;
+    color: #3f526b;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 
 /* Stile specifico per l'immagine del datasheet */
@@ -109,154 +110,187 @@ body {
     max-height: 800px;
     display: block;
     margin: auto;
-    border: 1px solid #3a3a5a; /* Bordo per l'immagine */
-    border-radius: 5px; /* Angoli leggermente arrotondati */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Ombra per l'immagine */
+    border: 1px solid #dbeaff; /* Bordo pastello per l'immagine */
+    border-radius: 8px; /* Angoli arrotondati */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 /* --- Tabelle (Parametri, Log, etc.) --- */
 .table {
     margin-top: 15px;
     font-size: 0.95rem;
-    color: #e0e0e0; /* Testo della tabella chiaro */
-    border: 1px solid #3a3a5a; /* Bordo tabella */
-    border-radius: 8px;
-    overflow: hidden; /* Per bordi arrotondati */
+    color: #3f526b; /* Testo della tabella scuro */
+    border: 1px solid #e0e7f0; /* Bordo tabella chiaro */
+    border-radius: 10px; /* Bordi stondati */
+    overflow: hidden;
 }
 
 .table th {
-    background-color: #00bcd4; /* Blu ciano per l'intestazione della tabella */
-    color: #1a1a2e; /* Testo scuro sull'intestazione */
+    background-color: #a8d5ff; /* Blu pastello per l'intestazione */
+    color: #3f526b; /* Testo scuro sull'intestazione */
     font-weight: 600;
-    border-color: #00bcd4;
+    border-color: #a8d5ff;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #2e2e4e; /* Riga dispari più scura */
+    background-color: #f7fbff; /* Riga dispari molto chiara */
 }
 
 .table-striped tbody tr:nth-of-type(even) {
-    background-color: #2a2a4a; /* Riga pari chiara */
+    background-color: #ffffff; /* Riga pari bianca */
 }
 
 .table td, .table th {
-    border-color: #3a3a5a; /* Colore del bordo delle celle */
+    border-color: #e0e7f0; /* Colore del bordo delle celle molto chiaro */
 }
 
 /* --- Card di Stato (Operative Status) --- */
 .card {
-    border-radius: 8px;
+    border-radius: 12px; /* Bordi più stondati */
     overflow: hidden;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    border: 1px solid #3a3a5a; /* Bordo per le card */
+    border: 1px solid #e0e7f0;
 }
 
 .card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 
 .card-title {
     font-size: 1.1rem;
     margin-bottom: 5px;
-    color: #f0f0f0; /* Titolo della card chiaro */
+    color: #3f526b; /* Titolo della card scuro */
 }
 
 .card-text {
-    color: #c0c0c0; /* Testo descrittivo più chiaro */
+    color: #6a829e; /* Testo descrittivo più chiaro */
 }
 
-/* Override colori Bootstrap per status con tonalità dark/tech */
+/* Override colori Bootstrap per status con tonalità pastello */
 .card.bg-success {
-    background-color: #21a179 !important; /* Verde scuro, techy */
-    color: #e0e0e0;
+    background-color: #a4e1a4 !important; /* Verde pastello */
+    color: #2e6b2e !important; /* Testo verde scuro */
 }
 .card.bg-warning {
-    background-color: #e6a700 !important; /* Giallo dorato */
-    color: #1a1a2e; /* Testo scuro per contrasto */
+    background-color: #ffe8a1 !important; /* Giallo pastello */
+    color: #92751f !important; /* Testo marrone scuro */
 }
 .card.bg-danger {
-    background-color: #e04e4e !important; /* Rosso vibrante */
-    color: #e0e0e0;
+    background-color: #ffb6b6 !important; /* Rosso pastello */
+    color: #9c3f3f !important; /* Testo rosso scuro */
 }
 .card.bg-info {
-    background-color: #00bcd4 !important; /* Blu ciano usato come accento */
-    color: #1a1a2e; /* Testo scuro per contrasto */
+    background-color: #a8d5ff !important; /* Blu pastello chiaro */
+    color: #3f526b !important; /* Testo blu scuro */
 }
 
 /* --- Form di Invio Alert --- */
 #alert-form {
-    padding: 20px;
-    background-color: #2a2a4a;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    border: 1px solid #3a3a5a;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e0e7f0;
 }
 
 #alert-form label {
-    color: #e0e0e0;
+    color: #3f526b;
 }
 
 #alert-form textarea.form-control {
-    background-color: #3a3a5a;
-    border: 1px solid #555;
-    color: #e0e0e0;
-    resize: vertical; /* Permette all'utente di ridimensionare verticalmente */
+    background-color: #f7fbff;
+    border: 1px solid #cce0f5;
+    color: #3f526b;
+    resize: vertical;
+    border-radius: 8px; /* Bordi arrotondati per textarea */
 }
 
 #alert-form textarea.form-control::placeholder {
-    color: #a0a0a0;
+    color: #8c9cb0;
 }
 
 #alert-form .btn-danger {
-    background-color: #e04e4e; /* Rosso vibrante */
-    border-color: #e04e4e;
+    background-color: #ff7676; /* Rosso pastello più vivace */
+    border-color: #ff7676;
     font-weight: 600;
     transition: background-color 0.3s, transform 0.2s;
+    border-radius: 8px; /* Bordi arrotondati per il bottone */
 }
 
 #alert-form .btn-danger:hover {
-    background-color: #c03d3d;
-    border-color: #b03030;
+    background-color: #ff5f5f;
+    border-color: #ff5f5f;
     transform: translateY(-2px);
 }
 
 #alert-confirmation.alert-success {
-    background-color: #21a179;
-    border-color: #1a8a68;
-    color: #e0e0e0;
+    background-color: #a4e1a4;
+    border-color: #8ccf8c;
+    color: #2e6b2e;
     font-weight: 500;
+    border-radius: 8px;
 }
 
 /* --- Altri elementi specifici --- */
 #active-alerts {
     padding: 15px 20px;
-    border-radius: 8px;
+    border-radius: 10px; /* Bordi arrotondati */
     margin-bottom: 20px;
     font-size: 1.1rem;
-    background-color: #e04e4e; /* Colore alert pericoloso */
-    color: #e0e0e0;
-    border: 1px solid #c03d3d;
+    background-color: #ffb6b6; /* Colore alert pastello pericoloso */
+    color: #9c3f3f; /* Testo scuro per contrasto */
+    border: 1px solid #e09f9f;
 }
 
 #active-alerts i {
     font-size: 1.8rem;
     vertical-align: middle;
-    color: #e0e0e0;
+    color: #9c3f3f;
 }
 
 /* Stili per link e testo */
 a {
-    color: #00bcd4; /* Colore link techy */
+    color: #6a95e0; /* Colore link pastello */
     text-decoration: none;
     transition: color 0.2s;
 }
 
 a:hover {
-    color: #4fc3f7; /* Colore link all'hover */
+    color: #7abeff; /* Colore link all'hover */
     text-decoration: underline;
 }
 
 p.text-muted {
-    color: #a0a0a0 !important; /* Testo muted per il tema scuro */
+    color: #6a829e !important; /* Testo muted per il tema chiaro */
+}
+
+/* Stili per i grafici (Chart.js) */
+canvas {
+    background-color: #ffffff; /* Sfondo bianco per il canvas */
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.chart-legend ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.chart-legend li {
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 0.9em;
+    color: #3f526b;
+}
+
+.chart-legend span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    border-radius: 3px;
+    vertical-align: middle;
 }
