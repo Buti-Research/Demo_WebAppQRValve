@@ -1,0 +1,214 @@
+/* dark-theme.css */
+
+/* General Body */
+body.dark-theme {
+    background-color: #222b33; /* Sfondo scuro e profondo */
+    color: #e0e6eb; /* Testo chiaro */
+}
+
+/* Header */
+.dashboard-header.dark-theme {
+    background-color: #2c3640; /* Sfondo header leggermente più chiaro del body */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    border: 1px solid #3d4a57;
+}
+
+.dashboard-header.dark-theme h1 {
+    color: #4da6ff; /* Blu brillante per il titolo */
+}
+
+/* Status Cards in Header */
+.status-card.dark-theme {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+/* Colori delle card di stato: mantieni le classi originali ma cambia lo sfondo se necessario */
+.status-card.dark-theme.bg-success {
+    background-color: #218838 !important; /* Verde scuro */
+    color: white !important;
+}
+.status-card.dark-theme.bg-warning {
+    background-color: #e0a800 !important; /* Giallo più scuro */
+    color: #f8f9fa !important; /* Testo chiaro su giallo scuro */
+}
+.status-card.dark-theme.bg-danger {
+    background-color: #c82333 !important; /* Rosso più scuro */
+    color: white !important;
+}
+.status-card.dark-theme.bg-info {
+    background-color: #138496 !important; /* Blu info più scuro */
+    color: white !important;
+}
+
+
+/* Sections */
+.dashboard-section.dark-theme {
+    background-color: #2c3640;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #3d4a57;
+}
+
+.dashboard-section.dark-theme:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.dashboard-section.dark-theme h2 {
+    color: #8ab4f8; /* Blu più chiaro per i sottotitoli */
+    border-bottom-color: #5a6b7d; /* Linea divisoria più scura */
+}
+
+/* Accordion */
+.accordion-item.dark-theme {
+    border: 1px solid #3d4a57;
+}
+
+.accordion-button.dark-theme {
+    color: #e0e6eb;
+    background-color: #3d4a57;
+}
+
+.accordion-button.dark-theme:hover {
+    background-color: #4a5a6b;
+}
+
+.accordion-button.dark-theme:not(.collapsed) {
+    color: #4da6ff;
+    background-color: #4a5a6b;
+    border-bottom-color: #5a6b7d !important;
+}
+
+.accordion-body.dark-theme {
+    background-color: #333d47; /* Sfondo contenuto accordion più scuro */
+    border-top: 1px solid #3d4a57;
+    color: #e0e6eb;
+}
+
+.valve-datasheet-img.dark-theme {
+    border: 1px solid #5a6b7d;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+
+/* Tables */
+.table.dark-theme {
+    border: 1px solid #3d4a57;
+    color: #e0e6eb;
+}
+
+.table.dark-theme th {
+    background-color: #4da6ff; /* Blu per intestazione */
+    color: #222b33; /* Testo scuro su blu brillante */
+    border-color: #4da6ff;
+}
+
+.table.dark-theme-striped tbody tr:nth-of-type(odd) {
+    background-color: #333d47; /* Riga dispari più scura */
+}
+
+.table.dark-theme-striped tbody tr:nth-of-type(even) {
+    background-color: #2c3640; /* Riga pari leggermente più chiara */
+}
+
+.table.dark-theme td, .table.dark-theme th {
+    border-color: #3d4a57;
+}
+
+/* Forms */
+#alert-form.dark-theme {
+    background-color: #2c3640;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #3d4a57;
+}
+
+#alert-form.dark-theme label {
+    color: #e0e6eb;
+}
+
+#alert-form.dark-theme textarea.form-control {
+    background-color: #333d47;
+    border: 1px solid #5a6b7d;
+    color: #e0e6eb;
+}
+
+#alert-form.dark-theme textarea.form-control:focus {
+    border-color: #4da6ff;
+    box-shadow: 0 0 0 0.25rem rgba(77, 166, 255, 0.25);
+    background-color: #3d4a57;
+}
+
+#alert-form.dark-theme textarea.form-control::placeholder {
+    color: #9aa7b3;
+}
+
+/* Active Alerts */
+#active-alerts.dark-theme {
+    background-color: #663339; /* Sfondo rosso scuro */
+    color: #ffcccc; /* Testo rosso chiaro */
+    border: 1px solid #804047;
+}
+
+#active-alerts.dark-theme i {
+    color: #ff6666; /* Icona rossa più chiara */
+}
+
+/* Links */
+body.dark-theme a {
+    color: #4da6ff; /* Blu brillante per i link */
+}
+
+body.dark-theme a:hover {
+    color: #66b5ff;
+}
+
+body.dark-theme p.text-muted {
+    color: #9aa7b3 !important; /* Grigio chiaro per testo muted */
+}
+
+/* Canvas (Charts) */
+canvas.dark-theme {
+    background-color: #2c3640;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    border: 1px solid #3d4a57;
+}
+
+/* Stile per il bottone del toggle tema */
+.theme-toggle-btn {
+    position: fixed; /* O absolute, a seconda di dove vuoi posizionarlo */
+    top: 25px; /* Margine dall'alto */
+    right: 30px; /* Margine dalla destra */
+    z-index: 1050; /* Sopra altri elementi */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%; /* Bottone rotondo */
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Stile per l'icona nel bottone */
+.theme-toggle-btn i {
+    font-size: 1.2rem; /* Assicura che l'icona sia della dimensione giusta */
+}
+
+/* Colore del bottone in tema scuro */
+.theme-toggle-btn.dark-theme {
+    background-color: #4da6ff; /* Blu più chiaro in tema scuro */
+    color: #222b33;
+}
+
+.theme-toggle-btn.dark-theme:hover {
+    background-color: #66b5ff;
+}

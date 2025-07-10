@@ -1,256 +1,338 @@
-// Funzioni helper per la simulazione dei dati
-function getRandomValue(min, max) {
-    return (Math.random() * (max - min) + min).toFixed(2);
-}
+// script.js
 
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    const lightThemeLink = document.getElementById('light-theme-link');
+    const darkThemeLink = document.getElementById('dark-theme-link');
 
-// --- Elenco Parametri Standard Teorici vs Reali ---
-const ctxPressure = document.getElementById('pressureChart').getContext('2d');
-window.pressureChartInstance = new Chart(ctxPressure, {
-    type: 'line',
-    data: {
-        labels: Array(10).fill(''),
-        datasets: [{
-            label: 'Pressione Reale (bar)',
-            data: Array(10).fill(10),
-            borderColor: 'rgb(12, 91, 211)',
-            tension: 0.1,
-            fill: false
-        }]
-    },
-    options: {
-        animation: false,
-        scales: {
-            y: { beginAtZero: false, suggestedMin: 9, suggestedMax: 11 },
-            x: { display: false }
-        },
-        plugins: {
-            legend: { display: true }
-        }
-    }
-});
-
-const ctxTemperature = document.getElementById('temperatureChart').getContext('2d');
-window.temperatureChartInstance = new Chart(ctxTemperature, {
-    type: 'line',
-    data: {
-        labels: Array(10).fill(''),
-        datasets: [{
-            label: 'Temperatura Reale (°C)',
-            data: Array(10).fill(25),
-            borderColor: 'rgb(253, 45, 45)',
-            tension: 0.1,
-            fill: false
-        }]
-    },
-    options: {
-        animation: false,
-        scales: {
-            y: { beginAtZero: false, suggestedMin: 23, suggestedMax: 27 },
-            x: { display: false }
-        },
-        plugins: {
-            legend: { display: true }
-        }
-    }
-});
-
-function updateParameters() {
-    const params = [
-        { name: "Pressione Ingresso", theoretical: "10 bar", real: getRandomValue(9.5, 10.5) + " bar" },
-        { name: "Pressione Uscita", theoretical: "5 bar", real: getRandomValue(4.8, 5.2) + " bar" },
-        { name: "Temperatura", theoretical: "25 °C", real: getRandomValue(24, 26) + " °C" },
-        { name: "Posizione Valvola", theoretical: "Aperta (100%)", real: getRandomValue(99, 100) + "%" },
-        { name: "Velocità Flusso", theoretical: "100 L/min", real: getRandomValue(98, 102) + " L/min" },
-        { name: "Thickness / Corrosion", theoretical: "0.5 mm", real: "0.33 mm" }
-
+    // Seleziona tutti gli elementi che cambiano stile con il tema
+    const elementsToStyle = [
+        document.querySelector('.dashboard-header'),
+        document.querySelector('#valve-gad-accordion'), // Sezione datasheet
+        document.querySelector('#documents-certs'), // Sezione documenti
+        document.querySelector('#sensor-data-download'), // Sezione download sensori
+        document.querySelector('#parameters'), // Sezione parametri
+        document.querySelector('#alerts-log'), // Sezione alerts
+        document.querySelector('#maintenance-log'), // Sezione manutenzione
+        document.querySelector('#send-alert'), // Sezione invio alert
+        document.querySelector('#alert-form'), // Form alert
+        document.querySelector('#active-alerts'), // Active alerts
+        document.querySelector('#alert-form textarea.form-control'), // Textarea
+        document.querySelector('.table'), // Tabelle generiche
+        document.querySelector('#pressureChart').closest('canvas'), // Canvas charts
+        document.querySelector('#temperatureChart').closest('canvas') // Canvas charts
     ];
-    const tbody = document.getElementById('parameters-body');
-    tbody.innerHTML = ''; // clear table
-    params.forEach(p => {
-        const row = tbody.insertRow();
-        row.insertCell().textContent = p.name;
+
+    // Seleziona i sottotitoli H2 dentro le sezioni
+    const h2Elements = document.querySelectorAll('.dashboard-section h2');
+
+    // Seleziona i bottoni e i body degli accordion
+    const accordionButtons = document.querySelectorAll('.accordion-button');
+    const accordionBodies = document.querySelectorAll('.accordion-body');
+
+    // Seleziona l'immagine del datasheet
+    const datasheetImg = document.querySelector('.valve-datasheet-img');
+
+    // Seleziona le card di stato nell'header (status-card)
+    const statusCards = document.querySelectorAll('.status-card');
+
+    // Funzione per applicare il tema
+    function applyTheme(isDark) {
+        if (isDark) {
+            body.classList.add('dark-theme');
+            lightThemeLink.disabled = true;
+            darkThemeLink.disabled = false;
+            themeToggleBtn.innerHTML = '<i class="bi bi-sun-fill"></i>'; // Icona Sole per tema chiaro
+            themeToggleBtn.classList.add('dark-theme'); // Stile bottone per tema scuro
+
+            elementsToStyle.forEach(el => {
+                if (el) el.classList.add('dark-theme');
+            });
+            h2Elements.forEach(el => el.classList.add('dark-theme'));
+            accordionButtons.forEach(el => el.classList.add('dark-theme'));
+            accordionBodies.forEach(el => el.classList.add('dark-theme'));
+            if (datasheetImg) datasheetImg.classList.add('dark-theme');
+
+            // Applica la classe dark-theme anche alle card di stato individualmente
+            statusCards.forEach(card => card.classList.add('dark-theme'));
+
+            // Per le tabelle striped, aggiungi una classe specifica per il tema scuro
+            document.querySelectorAll('.table-striped').forEach(table => {
+                table.classList.add('dark-theme-striped');
+                table.classList.add('dark-theme'); // Applica anche la classe generica per il bordo
+            });
+
+
+        } else {
+            body.classList.remove('dark-theme');
+            lightThemeLink.disabled = false;
+            darkThemeLink.disabled = true;
+            themeToggleBtn.innerHTML = '<i class="bi bi-moon-fill"></i>'; // Icona Luna per tema scuro
+            themeToggleBtn.classList.remove('dark-theme'); // Rimuovi stile bottone per tema scuro
+
+            elementsToStyle.forEach(el => {
+                if (el) el.classList.remove('dark-theme');
+            });
+            h2Elements.forEach(el => el.classList.remove('dark-theme'));
+            accordionButtons.forEach(el => el.classList.remove('dark-theme'));
+            accordionBodies.forEach(el => el.classList.remove('dark-theme'));
+            if (datasheetImg) datasheetImg.classList.remove('dark-theme');
+
+             // Rimuovi la classe dark-theme dalle card di stato individualmente
+            statusCards.forEach(card => card.classList.remove('dark-theme'));
+
+             // Rimuovi la classe specifica per le tabelle striped
+            document.querySelectorAll('.table-striped').forEach(table => {
+                table.classList.remove('dark-theme-striped');
+                table.classList.remove('dark-theme');
+            });
+        }
+    }
+
+    // Controlla la preferenza salvata al caricamento della pagina
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        applyTheme(true);
+    } else {
+        applyTheme(false); // Assicurati che il tema chiaro sia quello di default se non salvato
+    }
+
+    // Event Listener per il bottone di toggle
+    themeToggleBtn.addEventListener('click', function() {
+        const isDark = body.classList.contains('dark-theme');
+        applyTheme(!isDark);
+        localStorage.setItem('theme', !isDark ? 'dark' : 'light'); // Salva la preferenza
+    });
+
+    // --- Il resto del tuo script.js rimane qui sotto ---
+
+    // Dati per i parametri teorici vs reali (simulazione)
+    const parameters = [
+        { param: 'Pressione Ingresso', theoretical: '10', real: '9.8', unit: 'bar' },
+        { param: 'Pressione Uscita', theoretical: '8', real: '7.9', unit: 'bar' },
+        { param: 'Temperatura Fluido', theoretical: '30', real: '28.5', unit: '°C' },
+        { param: 'Portata', theoretical: '50', real: '49.5', unit: 'm³/h' },
+        { param: 'Posizione Valvola', theoretical: '100', real: '99', unit: '%' }
+    ];
+
+    const parametersBody = document.getElementById('parameters-body');
+    parameters.forEach(p => {
+        const row = parametersBody.insertRow();
+        row.insertCell().textContent = p.param;
         row.insertCell().textContent = p.theoretical;
         row.insertCell().textContent = p.real;
-        row.insertCell().textContent = p.name.includes("Pressione") ? "bar" : (p.name.includes("Temperatura") ? "°C" : (p.name.includes("Valvola") ? "%" : "L/min"));
+        row.insertCell().textContent = p.unit;
     });
 
-    // random update chart
-    if (window.pressureChartInstance) {
-        window.pressureChartInstance.data.datasets[0].data.push(parseFloat(params[0].real));
-        window.pressureChartInstance.data.datasets[0].data.shift(); // remove first to have windows ????
-        window.pressureChartInstance.update();
-    }
-    if (window.temperatureChartInstance) {
-        window.temperatureChartInstance.data.datasets[0].data.push(parseFloat(params[2].real));
-        window.temperatureChartInstance.data.datasets[0].data.shift();
-        window.temperatureChartInstance.update();
-    }
-}
-setInterval(updateParameters, 1000); // update every 1 sec
-updateParameters();
-
-// --- Elenco Status Operativi di Lavoro ---
-function updateOperationalStatus() {
-    const valveStates = ["Aperta (100%)", "Chiusa (0%)", "Apertura...", "Chiusura..."];
-    const actuatorStates = ["Operativo", "Manutenzione Richiesta", "Errore"];
-    const modeStates = ["Manuale", "Automatico"];
-    const connectionStates = ["Connesso", "Disconnesso", "Riconnessione..."];
-
-    const valveStatusEl = document.getElementById('valve-status');
-    const actuatorStatusEl = document.getElementById('actuator-status');
-    const modeStatusEl = document.getElementById('mode-status');
-    const connectionStatusEl = document.getElementById('connection-status');
-
-    valveStatusEl.textContent = valveStates[getRandomInt(0, valveStates.length - 1)];
-    actuatorStatusEl.textContent = actuatorStates[getRandomInt(0, actuatorStates.length - 1)];
-    modeStatusEl.textContent = modeStates[getRandomInt(0, modeStates.length - 1)];
-    // connectionStatusEl.textContent = connectionStates[getRandomInt(0, connectionStates.length - 1)];
-
-    // change the color based on random state
-    const actuatorCard = actuatorStatusEl.closest('.card');
-    actuatorCard.classList.remove('bg-success', 'bg-warning', 'bg-danger', 'bg-info');
-    if (actuatorStatusEl.textContent === "Operativo") {
-        actuatorCard.classList.add('bg-success');
-    } else if (actuatorStatusEl.textContent === "Manutenzione Richiesta") {
-        actuatorCard.classList.add('bg-warning');
-    } else if (actuatorStatusEl.textContent === "Errore") {
-        actuatorCard.classList.add('bg-danger');
-    } else {
-        actuatorCard.classList.add('bg-info'); 
-    }
-}
-setInterval(updateOperationalStatus, 10000); // update every 10 sec
-updateOperationalStatus(); 
-
-// --- Alert Attivi e Log ---
-let alertCounter = 0;
-const alertLog = []; 
-function addSimulatedAlert() {
-    alertCounter++;
-    const now = new Date().toLocaleString('it-IT');
-    const alertTypes = ["Critico", "Avviso", "Informazione"];
-    const alertMessages = [
-        "Pressione eccessiva rilevata.",
-        "Manutenzione programmata in arrivo.",
-        "Valvola in stato di chiusura lenta.",
-        "Anomalia nel sensore di temperatura.",
-        "Connessione persa con sensore."
-    ];
-    const alertStates = ["Attivo", "Risolto"];
-
-    const randomType = alertTypes[getRandomInt(0, alertTypes.length - 1)];
-    const randomMsg = alertMessages[getRandomInt(0, alertMessages.length - 1)];
-    const randomState = alertStates[getRandomInt(0, alertStates.length - 1)];
-
-    const newAlert = {
-        timestamp: now,
-        type: randomType,
-        message: randomMsg,
-        state: randomState
+    // Dati simulati per i grafici
+    const generateChartData = () => {
+        const labels = Array.from({ length: 10 }, (_, i) => `Ora ${i + 1}`);
+        const pressureData = Array.from({ length: 10 }, () => (Math.random() * 2 + 9).toFixed(1)); // Tra 9 e 11
+        const temperatureData = Array.from({ length: 10 }, () => (Math.random() * 3 + 25).toFixed(1)); // Tra 25 e 28
+        return { labels, pressureData, temperatureData };
     };
-    alertLog.unshift(newAlert); 
-    if (alertLog.length > 10) { 
-        alertLog.pop();
-    }
 
-    const tbody = document.getElementById('alert-log-body');
-    tbody.innerHTML = ''; // clear the table
-    alertLog.forEach(alertItem => {
-        const row = tbody.insertRow();
-        row.insertCell().textContent = alertItem.timestamp;
-        row.insertCell().textContent = alertItem.type;
-        row.insertCell().textContent = alertItem.message;
-        row.insertCell().textContent = alertItem.state;
+    let chartData = generateChartData();
+
+    // Grafico Pressione
+    const pressureCtx = document.getElementById('pressureChart').getContext('2d');
+    const pressureChart = new Chart(pressureCtx, {
+        type: 'line',
+        data: {
+            labels: chartData.labels,
+            datasets: [{
+                label: 'Pressione (bar)',
+                data: chartData.pressureData,
+                borderColor: '#007bff',
+                backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    title: {
+                        display: true,
+                        text: 'Pressione (bar)',
+                        color: 'body.dark-theme ? #e0e6eb : #333d47' // Colore label asse Y dinamico
+                    },
+                    ticks: {
+                        color: 'body.dark-theme ? #e0e6eb : #333d47' // Colore tick asse Y dinamico
+                    },
+                    grid: {
+                        color: 'body.dark-theme ? #3a4754 : #ebedef' // Colore griglia asse Y dinamico
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Tempo',
+                        color: 'body.dark-theme ? #e0e6eb : #333d47' // Colore label asse X dinamico
+                    },
+                    ticks: {
+                        color: 'body.dark-theme ? #e0e6eb : #333d47' // Colore tick asse X dinamico
+                    },
+                    grid: {
+                        color: 'body.dark-theme ? #3a4754 : #ebedef' // Colore griglia asse X dinamico
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false // Nasconde la legenda se c'è un solo dataset
+                }
+            }
+        }
     });
 
-    // Mostra alert attivo casualmente
-    const activeAlertDiv = document.getElementById('active-alerts');
-    if (Math.random() > 0.7 && newAlert.state === "Attivo" && newAlert.type === "Critico") { // Mostra un alert critico attivo ogni tanto
-        activeAlertDiv.classList.remove('d-none');
-        activeAlertDiv.innerHTML = `<i class="bi bi-exclamation-triangle-fill"></i> <strong>${newAlert.type}:</strong> ${newAlert.message}`;
-    } else {
-        activeAlertDiv.classList.add('d-none');
+    // Grafico Temperatura
+    const temperatureCtx = document.getElementById('temperatureChart').getContext('2d');
+    const temperatureChart = new Chart(temperatureCtx, {
+        type: 'line',
+        data: {
+            labels: chartData.labels,
+            datasets: [{
+                label: 'Temperatura (°C)',
+                data: chartData.temperatureData,
+                borderColor: '#28a745',
+                backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    title: {
+                        display: true,
+                        text: 'Temperatura (°C)',
+                         color: 'body.dark-theme ? #e0e6eb : #333d47'
+                    },
+                     ticks: {
+                        color: 'body.dark-theme ? #e0e6eb : #333d47'
+                    },
+                    grid: {
+                        color: 'body.dark-theme ? #3a4754 : #ebedef'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Tempo',
+                         color: 'body.dark-theme ? #e0e6eb : #333d47'
+                    },
+                     ticks: {
+                        color: 'body.dark-theme ? #e0e6eb : #333d47'
+                    },
+                    grid: {
+                        color: 'body.dark-theme ? #3a4754 : #ebedef'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+
+    // Funzione per aggiornare i colori dei grafici Chart.js al cambio tema
+    function updateChartColors(isDark) {
+        const axisColor = isDark ? '#e0e6eb' : '#333d47';
+        const gridColor = isDark ? '#3a4754' : '#ebedef';
+
+        [pressureChart, temperatureChart].forEach(chart => {
+            if (chart) {
+                chart.options.scales.y.title.color = axisColor;
+                chart.options.scales.y.ticks.color = axisColor;
+                chart.options.scales.y.grid.color = gridColor;
+                chart.options.scales.x.title.color = axisColor;
+                chart.options.scales.x.ticks.color = axisColor;
+                chart.options.scales.x.grid.color = gridColor;
+                chart.update();
+            }
+        });
     }
-}
-setInterval(addSimulatedAlert, 15000); // every 5 sec
-addSimulatedAlert(); // first update
 
-// --- Sensor Data Download ---
-document.getElementById('download-sensor-data-btn').addEventListener('click', function() {
-    const data = [
-        ['Timestamp', 'Pressure In (bar)', 'Pressure Out (bar)', 'Temperature (°C)', 'Valve Position (%)'],
-    ];
+    // Modifica la funzione applyTheme per chiamare updateChartColors
+    const originalApplyTheme = applyTheme;
+    applyTheme = function(isDark) {
+        originalApplyTheme(isDark);
+        updateChartColors(isDark);
+    };
 
-    const startDate = new Date('2024-01-01T00:00:00');
-    for (let i = 0; i < 200; i++) { // 200 data point
-        const currentTimestamp = new Date(startDate.getTime() + i * 3600 * 1000); // Ogni ora
-        data.push([
-            currentTimestamp.toISOString(),
-            getRandomValue(9.5, 10.5),
-            getRandomValue(4.8, 5.2),
-            getRandomValue(24, 26),
-            getRandomInt(0, 100)
-        ]);
-    }
+    // Chiama applyTheme all'inizio per impostare i colori dei grafici correttamente
+    applyTheme(localStorage.getItem('theme') === 'dark');
 
-    let csvContent = data.map(e => e.join(",")).join("\n");
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement("a");
-    if (link.download !== undefined) { // Feature detection
-        const url = URL.createObjectURL(blob);
-        link.setAttribute("href", url);
-        link.setAttribute("download", "sensor_data_demo.csv");
-        link.style.visibility = 'hidden';
-        document.body.appendChild(link);
+    // Gestione alert form (simulazione)
+    const alertForm = document.getElementById('alert-form');
+    const alertMessageTextarea = document.getElementById('alertMessage');
+    const alertConfirmation = document.getElementById('alert-confirmation');
+    const activeAlertsDiv = document.getElementById('active-alerts');
+    const alertLogBody = document.getElementById('alert-log-body');
+
+    alertForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Impedisce il ricaricamento della pagina
+        const message = alertMessageTextarea.value.trim();
+
+        if (message) {
+            // Simulazione invio alert
+            console.log("Alert inviato:", message);
+
+            // Visualizza messaggio di conferma
+            alertConfirmation.classList.remove('d-none');
+            alertConfirmation.textContent = `Alert inviato con successo! Messaggio: "${message}"`;
+
+            // Aggiorna "Alert Attivi"
+            activeAlertsDiv.classList.remove('d-none');
+            activeAlertsDiv.innerHTML = `<i class="bi bi-exclamation-triangle-fill"></i> **ATTENZIONE:** ${message}`;
+
+            // Aggiungi al log
+            const now = new Date();
+            const timestamp = now.toLocaleString('it-IT');
+            const newRow = alertLogBody.insertRow(0); // Inserisce in cima
+            newRow.insertCell().textContent = timestamp;
+            newRow.insertCell().textContent = 'Manuale';
+            newRow.insertCell().textContent = message;
+            newRow.insertCell().textContent = 'Inviato';
+
+            // Resetta il form e nasconde la conferma dopo 5 secondi
+            alertMessageTextarea.value = '';
+            setTimeout(() => {
+                alertConfirmation.classList.add('d-none');
+            }, 5000);
+        } else {
+            alert('Per favore, scrivi un messaggio per l\'alert.');
+        }
+    });
+
+    // Simulazione del download dati sensori
+    document.getElementById('download-sensor-data-btn').addEventListener('click', function() {
+        const { labels, pressureData, temperatureData } = chartData;
+        let csvContent = "data:text/csv;charset=utf-8,";
+        csvContent += "Time,Pressure (bar),Temperature (°C)\n"; // Headers
+
+        for (let i = 0; i < labels.length; i++) {
+            csvContent += `${labels[i]},${pressureData[i]},${temperatureData[i]}\n`;
+        }
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement('a');
+        link.setAttribute('href', encodedUri);
+        link.setAttribute('download', 'sensor_data.csv');
+        document.body.appendChild(link); // Required for Firefox
         link.click();
-        document.body.removeChild(link);
-    } else {
-        alert('Il tuo browser non supporta il download diretto. Copia il contenuto seguente:\n\n' + csvContent);
-    }
-});
-
-// --- Invio Alert ---
-document.getElementById('alert-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Impedisce il ricaricamento della pagina
-    const message = document.getElementById('alertMessage').value;
-    if (message.trim() === '') {
-        alert('Il messaggio non può essere vuoto.');
-        return;
-    }
-
-    console.log("Simulazione invio alert:", message);
-
-    const now = new Date().toLocaleString('it-IT');
-    const newManualAlert = {
-        timestamp: now,
-        type: "Manuale",
-        message: message,
-        state: "Inviato"
-    };
-    alertLog.unshift(newManualAlert); // manual alert
-    if (alertLog.length > 10) {
-        alertLog.pop();
-    }
-    const tbody = document.getElementById('alert-log-body');
-    tbody.innerHTML = ''; // refresh the table
-    alertLog.forEach(alertItem => {
-        const row = tbody.insertRow();
-        row.insertCell().textContent = alertItem.timestamp;
-        row.insertCell().textContent = alertItem.type;
-        row.insertCell().textContent = alertItem.message;
-        row.insertCell().textContent = alertItem.state;
+        document.body.removeChild(link); // Clean up
+        alert('Dati sensori scaricati come sensor_data.csv');
     });
 
-
-    document.getElementById('alert-confirmation').classList.remove('d-none');
-    document.getElementById('alertMessage').value = ''; // clear field
-    setTimeout(() => {
-        document.getElementById('alert-confirmation').classList.add('d-none');
-    }, 3000); // hide after 3 sec
 });
