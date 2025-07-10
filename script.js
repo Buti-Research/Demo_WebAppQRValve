@@ -66,7 +66,9 @@ function updateParameters() {
         { name: "Pressione Uscita", theoretical: "5 bar", real: getRandomValue(4.8, 5.2) + " bar" },
         { name: "Temperatura", theoretical: "25 °C", real: getRandomValue(24, 26) + " °C" },
         { name: "Posizione Valvola", theoretical: "Aperta (100%)", real: getRandomValue(99, 100) + "%" },
-        { name: "Velocità Flusso", theoretical: "100 L/min", real: getRandomValue(98, 102) + " L/min" }
+        { name: "Velocità Flusso", theoretical: "100 L/min", real: getRandomValue(98, 102) + " L/min" },
+        { name: "Thickness / Corrosion", theoretical: "0.5 mm", real: "0.33 mm" }
+
     ];
     const tbody = document.getElementById('parameters-body');
     tbody.innerHTML = ''; // clear table
